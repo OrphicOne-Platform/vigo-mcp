@@ -1,0 +1,48 @@
+{
+  "name": "OrphicOne VIGO",
+  "description": "Hong Kong's First SFC Compliance AI Agent. Query SFC licensing requirements, search enforcement actions, get latest regulatory updates, and access complete license guides — in English and Chinese. 1,250+ structured knowledge entries sourced from official SFC publications.",
+  "url": "https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp",
+  "transport": "streamable-http",
+  "authentication": "none",
+  "category": "Financial Services",
+  "vendor": {
+    "name": "Orphic Technology Limited",
+    "url": "https://orphicone.com"
+  },
+  "tools": [
+    {
+      "name": "query_regulation",
+      "description": "Query Hong Kong SFC regulatory knowledge. Covers licensing (Type 1-12), compliance, exams, CPD/CPT, AML/CFT, virtual assets (VATP/ASPIRe), and more. Supports English and Chinese.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "search_enforcement",
+      "description": "Search SFC enforcement actions including fines, suspensions, bans, and prosecutions. Search by company, person, or violation type.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "latest_updates",
+      "description": "Get latest SFC regulatory updates: circulars, enforcement news, VATP developments, consultation papers.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "get_license_guide",
+      "description": "Comprehensive guide for a specific SFC license type: exam papers, capital requirements, fit-and-proper criteria, CPD hours.",
+      "readOnlyHint": true
+    }
+  ],
+  "keywords": [
+    "sfc",
+    "hong-kong",
+    "compliance",
+    "regulatory",
+    "financial-services",
+    "virtual-assets",
+    "vatp",
+    "aml",
+    "licensing",
+    "bilingual",
+    "fintech",
+    "web3"
+  ]
+}

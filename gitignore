@@ -1,0 +1,19 @@
+# Environment variables (contain API keys)
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Backup files from auto collector
+VIGO_SFC_bilingual_*.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
