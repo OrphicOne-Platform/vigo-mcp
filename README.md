@@ -278,7 +278,7 @@ VIGO is a read-only compliance intelligence service. We do not collect personal 
 ## Support
 
 - Email: contact@orphicone.com
-- Issues: [GitHub Issues](https://github.com/orphicone/vigo-mcp/issues)
+- Issues: [GitHub Issues](https://github.com/OrphicOne-Platform/vigo-mcp/issues)
 - Website: [orphicone.com](https://orphicone.com)
 
 ## License
