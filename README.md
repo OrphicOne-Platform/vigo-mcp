@@ -97,7 +97,7 @@ VIGO provides 4 read-only tools (all annotated with `readOnlyHint: true`):
 
 ### `query_regulation`
 
-Ask any question about SFC regulations. Covers all 12 license types, VATP/ASPIRe framework, AML/CFT, exams, CPD/CPT, and more.
+Ask any question about SFC regulations. Covers all 13 license types, VATP/ASPIRe framework, AML/CFT, exams, CPD/CPT, and more.
 
 **Bilingual**: Responds in whatever language you ask — English or Chinese.
 
@@ -105,7 +105,7 @@ Ask any question about SFC regulations. Covers all 12 license types, VATP/ASPIRe
 |-----------|----------|-------------|
 | `question` | Yes | Your regulatory question |
 | `language` | No | `"en"`, `"zh"`, or `"auto"` (default) |
-| `license_type` | No | Filter: `"Type 1"` through `"Type 12"` |
+| `license_type` | No | Filter: `"Type 1"` through `"Type 13"` |
 
 ### `search_enforcement`
 
@@ -122,7 +122,7 @@ Comprehensive guide for any SFC license type: exams, capital, fit-and-proper, CP
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `license_type` | Yes | `"Type 1"` through `"Type 12"` |
+| `license_type` | Yes | `"Type 1"` through `"Type 13"` |
 | `aspect` | No | `"overview"`, `"exam"`, `"capital"`, `"fit_and_proper"` |
 
 ### `latest_updates`
@@ -144,7 +144,7 @@ Latest SFC regulatory updates: circulars, enforcement, VATP developments, consul
 User: What exams do I need to pass for an SFC Type 9 (Asset Management) license?
 
 VIGO returns:
-- Complete exam structure: Paper 1, 6, 7, 12
+- Complete exam structure: Paper 1, 6, 7, 13
 - Pass marks, coverage areas, exemption conditions
 - Link to SFC official exam requirements page
 ```
@@ -193,7 +193,7 @@ VIGO's intelligence comes from a structured, continuously updated knowledge base
 - **1,250+ entries** covering SFC regulatory content
 - **Bilingual**: Every entry exists in both English and Traditional Chinese
 - **6 official data sources**: SFC Circulars, Enforcement News, Consultations, VATP/Virtual Asset updates, Press Releases, and legal analyses
-- **Coverage**: All 12 license types, VATP/ASPIRe framework, AML/CFT guidelines, enforcement case history, exam requirements, CPD/CPT rules, consultation papers
+- **Coverage**: All 13 license types, VATP/ASPIRe framework, AML/CFT guidelines, enforcement case history, exam requirements, CPD/CPT rules, consultation papers
 - **Official links**: Every response traces back to SFC source documents
 - **Vector search**: OpenAI `text-embedding-3-small` embeddings for semantic matching
 
@@ -264,7 +264,7 @@ Global MCP Ecosystem (16,000+ servers)
 
 | Phase | Focus | Status |
 |-------|-------|--------|
-| **Phase 1** | SFC compliance — all 12 license types, enforcement, VATP | ✅ Live |
+| **Phase 1** | SFC compliance — all 13 license types, enforcement, VATP | ✅ Live |
 | **Phase 2** | Expand to full HK regulatory (HKMA, IA, MPFA) | Planned |
 | **Phase 3** | Cross-border Asia-Pacific (Singapore MAS, Dubai VARA) | Future |
 | **Phase 4** | Global digital asset regulatory intelligence | Vision |
