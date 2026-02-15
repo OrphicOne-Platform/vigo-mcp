@@ -12,7 +12,7 @@
   "tools": [
     {
       "name": "query_regulation",
-      "description": "Query Hong Kong SFC regulatory knowledge. Covers licensing (Type 1-12), compliance, exams, CPD/CPT, AML/CFT, virtual assets (VATP/ASPIRe), and more. Supports English and Chinese.",
+      "description": "Query Hong Kong SFC regulatory knowledge. Covers licensing (Type 1-13), compliance, exams, CPD/CPT, AML/CFT, virtual assets (VATP/ASPIRe), and more. Supports English and Chinese.",
       "readOnlyHint": true
     },
     {
