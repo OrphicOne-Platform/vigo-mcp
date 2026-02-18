@@ -1,29 +1,42 @@
-# VIGO — Hong Kong's First SFC Compliance AI Agent
+# VIGO — The First MCP Server for Financial Regulatory Intelligence
 
-> **AI-powered Hong Kong Securities & Futures Commission regulatory intelligence, via MCP**
+> **Compliance Expert · Capital Architect · Bilingual AI Agent for Hong Kong SFC Regulations**
 > 
-> *By [OrphicOne](https://orphicone.com) · Bilingual (English & 繁體中文) · 1,250+ Structured Knowledge Entries*
+> *By [OrphicOne](https://orphicone.com) · English & 繁體中文 · Continuously Updated Knowledge Base*
 
 ---
 
 ## What is VIGO?
 
-VIGO is a specialized compliance AI agent that provides instant, accurate answers to Hong Kong SFC regulatory questions — directly inside Claude, ChatGPT, Cursor, VS Code, or any MCP-compatible platform.
+**VIGO** (Victory · We Go) is a specialized financial compliance AI agent — and the world's first MCP server dedicated to financial regulatory intelligence in any jurisdiction.
 
-Unlike general-purpose AI that gives approximate answers from training data, VIGO draws from a **continuously updated, structured knowledge base** of 1,250+ entries sourced directly from official SFC publications. Every response includes official document links for professional verification.
+At its core, VIGO is a **compliance expert**: deeply versed in Hong Kong SFC regulations, enforcement history, licensing requirements, and AML/CFT rules. But VIGO is more than a compliance encyclopedia. It is a **Global Financial Capital Architect** — an AI that understands how compliance intersects with business strategy, capital structures, and market reality.
+
+> *Compliance is the floor. Business is the ceiling.*
+> *VIGO helps you build from one to the other.*
+
+### V.I.G.O. — The Four Dimensions
+
+| | Dimension | Capability |
+|---|---|---|
+| **V** | **Visionary** (遠見) | Capital path planning — IPO structures, SPAC, market positioning |
+| **I** | **Insight** (洞察) | Architecture design — Red-chip, VIE, LPF, OFC, SPC structures |
+| **G** | **Governance** (治理) | Regulatory mastery — SFC licensing (Type 1-12), FRR, AML/CTF |
+| **O** | **Optimization** (優化) | Cost-effective solutions — market pricing, talent policy, ROI |
 
 ### Why VIGO instead of asking Claude/ChatGPT directly?
 
-| | General AI (Claude/ChatGPT) | VIGO |
+| | General AI | VIGO |
 |---|---|---|
-| **Data freshness** | Frozen at training cutoff | Continuously updated from SFC sources |
-| **Accuracy** | Directionally correct, details may be wrong | Precise, based on original SFC documents |
-| **Source links** | None | Every answer includes official SFC links |
-| **Depth** | Overview-level | Exam details, exemptions, capital, AML specifics |
-| **Enforcement cases** | Almost none | Searchable fines, bans, suspensions |
-| **Chinese quality** | Generic translation | Professional regulatory terminology |
+| **Data** | Frozen at training cutoff | Continuously updated from official SFC sources |
+| **Accuracy** | Approximate, details often wrong | Precise — based on original regulatory documents |
+| **Sources** | None | Every answer includes official SFC document links |
+| **Depth** | Overview-level | Exam papers, exemptions, capital rules, enforcement details |
+| **Enforcement** | Almost none | Searchable fines, bans, suspensions by company/person/year |
+| **Perspective** | Generic | Connects compliance requirements to business value |
+| **Chinese** | Generic translation | Professional regulatory terminology (繁體中文) |
 
-> *Think of it this way: asking ChatGPT about SFC regulations is like asking a smart friend — they roughly know. Asking VIGO is like consulting a dedicated SFC compliance advisor who knows every circular, every enforcement action, and gives you the original source.*
+> *Asking ChatGPT about SFC regulations is like asking a smart friend — they roughly know. Asking VIGO is like consulting a senior compliance partner who knows every circular, every enforcement action, every licensing nuance, and always connects compliance back to your business objectives.*
 
 ---
 
@@ -31,17 +44,17 @@ Unlike general-purpose AI that gives approximate answers from training data, VIG
 
 ### Claude (Web, Desktop, Mobile)
 
-**Settings → Connectors → Add custom connector** → paste the URL:
+**Settings → Connectors → Add custom connector** → paste:
 
 ```
 https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp
 ```
 
-That's it. Claude will automatically invoke VIGO when you ask SFC compliance questions.
+Claude will automatically invoke VIGO when you ask SFC compliance questions.
 
 ### Cursor
 
-Settings → Features → MCP → Add Server, or add to `.cursor/mcp.json`:
+Add to `.cursor/mcp.json`:
 
 ```json
 {
@@ -77,8 +90,6 @@ claude mcp add --transport http vigo https://lsoatzzwpltpydwyfqqv.supabase.co/fu
 
 ### ChatGPT Desktop
 
-Add to MCP settings:
-
 ```json
 {
   "mcpServers": {
@@ -97,15 +108,13 @@ VIGO provides 4 read-only tools (all annotated with `readOnlyHint: true`):
 
 ### `query_regulation`
 
-Ask any question about SFC regulations. Covers all 13 license types, VATP/ASPIRe framework, AML/CFT, exams, CPD/CPT, and more.
-
-**Bilingual**: Responds in whatever language you ask — English or Chinese.
+Ask any question about SFC regulations. Covers all license types, VATP/ASPIRe framework, AML/CFT, exams, CPD/CPT, and more. Bilingual — responds in whatever language you ask.
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `question` | Yes | Your regulatory question |
 | `language` | No | `"en"`, `"zh"`, or `"auto"` (default) |
-| `license_type` | No | Filter: `"Type 1"` through `"Type 13"` |
+| `license_type` | No | Filter: `"Type 1"` through `"Type 12"` |
 
 ### `search_enforcement`
 
@@ -122,7 +131,7 @@ Comprehensive guide for any SFC license type: exams, capital, fit-and-proper, CP
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `license_type` | Yes | `"Type 1"` through `"Type 13"` |
+| `license_type` | Yes | `"Type 1"` through `"Type 12"` |
 | `aspect` | No | `"overview"`, `"exam"`, `"capital"`, `"fit_and_proper"` |
 
 ### `latest_updates`
@@ -132,79 +141,65 @@ Latest SFC regulatory updates: circulars, enforcement, VATP developments, consul
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `category` | No | `"circular"`, `"enforcement"`, `"vatp"`, `"consultation"`, `"all"` |
-| `count` | No | Number of results, 1-10 (default: 5) |
+| `count` | No | Number of results, 1–10 (default: 5) |
 
 ---
 
-## Examples
+## Example Queries
 
-### Licensing Exam Requirements
-
+**Licensing & Exams**
 ```
-User: What exams do I need to pass for an SFC Type 9 (Asset Management) license?
-
-VIGO returns:
-- Complete exam structure: Paper 1, 6, 7, 13
-- Pass marks, coverage areas, exemption conditions
-- Link to SFC official exam requirements page
+What exams do I need for an SFC Type 9 (Asset Management) license?
+→ Complete exam structure, pass marks, exemption conditions, official links
 ```
 
-### Enforcement Search
-
+**Enforcement Intelligence**
 ```
-User: Search for SFC enforcement actions related to anti-money laundering in 2025
-
-VIGO returns:
-- Matching enforcement cases with company names, penalties, dates
-- Violation details and regulatory basis
-- Links to official SFC enforcement notices
+Search for SFC enforcement actions related to AML in 2025
+→ Matching cases with companies, penalties, regulatory basis, official notices
 ```
 
-### Chinese Language Query
-
+**Bilingual Regulatory Updates**
 ```
-User: SFC最新的通函和監管動態是什麼？
-
-VIGO returns:
-- 最新通函列表，含參考編號、日期、主題
-- 繁體中文專業術語
-- 附帶SFC官方文件鏈接
+SFC最新的通函和監管動態是什麼？
+→ 最新通函列表，含參考編號、日期、主題、官方文件鏈接（繁體中文）
 ```
 
-### Complete License Guide
-
+**Complete License Guide**
 ```
-User: Give me a complete guide for Type 1 (Dealing in Securities) license
+Give me a complete guide for Type 1 (Dealing in Securities) license
+→ Exam requirements, capital rules, fit-and-proper criteria, CPD obligations
+```
 
-VIGO returns:
-- Exam requirements and exemptions
-- Minimum paid-up capital and liquid capital
-- Fit-and-proper criteria for ROs and LRs
-- CPD/CPT annual hour obligations
-- Links to relevant SFC guidelines
+**Capital Structure Advisory**
+```
+What are the compliance considerations for setting up an OFC in Hong Kong?
+→ Regulatory requirements, SFC approval process, tax benefits, practical timeline
 ```
 
 ---
 
 ## Knowledge Base
 
-VIGO's intelligence comes from a structured, continuously updated knowledge base:
+VIGO's intelligence is powered by a structured, continuously updated knowledge base covering 26 years of SFC regulatory history:
 
-- **1,250+ entries** covering SFC regulatory content
-- **Bilingual**: Every entry exists in both English and Traditional Chinese
-- **6 official data sources**: SFC Circulars, Enforcement News, Consultations, VATP/Virtual Asset updates, Press Releases, and legal analyses
-- **Coverage**: All 13 license types, VATP/ASPIRe framework, AML/CFT guidelines, enforcement case history, exam requirements, CPD/CPT rules, consultation papers
-- **Official links**: Every response traces back to SFC source documents
-- **Vector search**: OpenAI `text-embedding-3-small` embeddings for semantic matching
+**Official Sources**
+- SFC Circulars, Enforcement News, Consultation Papers
+- VATP/Virtual Asset regulatory updates
+- Press Releases and policy announcements
+- 30 foundational regulatory documents (Codes, Guidelines, Laws)
 
-### Data Pipeline
+**Coverage**
+- All SFC license types (Type 1–12) and VATP licensing
+- AML/CFT guidelines and enforcement case history
+- Exam requirements, CPD/CPT rules, fit-and-proper criteria
+- FRR capital requirements and operational compliance
+- Industry intelligence from leading law firms and consulting firms
 
-Knowledge base updates are automated via [`auto_collect_upload.py`](auto_collect_upload.py):
-1. Fetches latest content from 5 SFC API endpoints
-2. Extracts text from PDF circulars (via `pdfplumber`)
-3. Generates bilingual chunks (EN original + ZH translation)
-4. Embeds official SFC document links in every entry
-5. Uploads to Supabase vector database with embeddings
+**Technical**
+- Bilingual: every entry exists in English and Traditional Chinese
+- Vector search via OpenAI `text-embedding-3-small` embeddings
+- Official SFC document links embedded in every response
 
 ---
 
@@ -228,14 +223,11 @@ Knowledge base updates are automated via [`auto_collect_upload.py`](auto_collect
     ▼          ▼          ▼
  OpenAI    Supabase    DeepSeek
  Embeddings  Vector DB   Chat API
-             1,250+
-             entries
 ```
 
-**Transport**: Streamable HTTP (MCP recommended standard)  
-**Authentication**: None required (publicly accessible)  
-**Runtime**: Supabase Edge Functions (Deno TypeScript)  
-**Embedding Model**: OpenAI `text-embedding-3-small`  
+**Transport**: Streamable HTTP (MCP standard)  
+**Authentication**: None required  
+**Runtime**: Supabase Edge Functions (Deno)  
 
 ---
 
@@ -243,11 +235,11 @@ Knowledge base updates are automated via [`auto_collect_upload.py`](auto_collect
 
 **[OrphicOne](https://orphicone.com)** is a Hong Kong-based cross-border digital asset regulatory intelligence platform.
 
-**VIGO** (Vigilance · Interpretation · Guidance · Operations) is OrphicOne's AI compliance agent — the world's first and currently only MCP server dedicated to financial regulatory compliance in any jurisdiction.
+**VIGO** is OrphicOne's AI compliance agent and capital advisory system — the world's first and currently only MCP server dedicated to financial regulatory compliance in any jurisdiction.
 
-Among 16,000+ MCP servers globally, VIGO is the only one covering financial regulatory compliance. In the Hong Kong SFC compliance space, it stands alone.
+### Positioning
 
-### Competitive Position
+Among 16,000+ MCP servers globally, VIGO occupies a unique position:
 
 ```
 Global MCP Ecosystem (16,000+ servers)
@@ -258,16 +250,20 @@ Global MCP Ecosystem (16,000+ servers)
 └── HK SFC Compliance      █                 VIGO (the first)
 ```
 
+### Philosophy
+
+VIGO is built on the belief that **compliance is not a cost — it is a competitive advantage**. Great compliance doesn't slow business down; it provides the foundation for sustainable growth, client trust, and market credibility.
+
 ---
 
 ## Roadmap
 
 | Phase | Focus | Status |
 |-------|-------|--------|
-| **Phase 1** | SFC compliance — all 13 license types, enforcement, VATP | ✅ Live |
-| **Phase 2** | Expand to full HK regulatory (HKMA, IA, MPFA) | Planned |
+| **Phase 1** | SFC compliance — all license types, enforcement, VATP | ✅ Live |
+| **Phase 2** | Full HK regulatory coverage (HKMA, IA, MPFA) | Planned |
 | **Phase 3** | Cross-border Asia-Pacific (Singapore MAS, Dubai VARA) | Future |
-| **Phase 4** | Global digital asset regulatory intelligence | Vision |
+| **Phase 4** | Global financial regulatory intelligence | Vision |
 
 ---
 
@@ -278,7 +274,7 @@ VIGO is a read-only compliance intelligence service. We do not collect personal 
 ## Support
 
 - Email: contact@orphicone.com
-- Issues: [GitHub Issues](https://github.com/OrphicOne-Platform/vigo-mcp/issues)
+- Issues: [GitHub Issues](https://github.com/365xbusiness/vigo-mcp/issues)
 - Website: [orphicone.com](https://orphicone.com)
 
 ## License
