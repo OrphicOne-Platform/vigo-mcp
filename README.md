@@ -8,7 +8,7 @@
 
 ## What is VIGO?
 
-**VIGO** (Visionary · Insight · Governance · Optimization) is a specialized financial regulatory intelligence AI agent — and the world's first MCP server dedicated to financial regulatory intelligence in any jurisdiction.
+**VIGO** (Visionary · Insight · Governance · Optimization) is a specialized financial regulatory intelligence AI agent — and the industry's first MCP server dedicated to financial regulatory intelligence in any jurisdiction.
 
 At its core, VIGO is a **regulatory intelligence expert**: deeply versed in Hong Kong SFC regulations, enforcement history, licensing requirements, and AML/CFT rules. But VIGO is more than a compliance encyclopedia. It is a **business-aware compliance navigator** — an AI that understands how compliance intersects with business strategy, capital structures, and market reality.
 
@@ -237,7 +237,7 @@ VIGO's intelligence is powered by a structured, continuously updated knowledge b
 
 **[OrphicOne](https://orphicone.com)** is a Hong Kong-based regulatory intelligence platform for financial services.
 
-**VIGO** is OrphicOne's AI-powered regulatory intelligence agent — the world's first and currently only MCP server dedicated to financial regulatory intelligence in any jurisdiction.
+**VIGO** is OrphicOne's AI-powered regulatory intelligence agent — the industry's first and currently only MCP server dedicated to financial regulatory intelligence in any jurisdiction.
 
 ### Positioning
 
@@ -249,7 +249,7 @@ Global MCP Ecosystem (16,000+ servers)
 ├── Productivity           ██████████        hundreds
 ├── Data & Analytics       ████████          hundreds
 ├── Financial Reg Intelligence █                 VIGO (only one)
-└── HK SFC Reg Intelligence    █                 VIGO (the first)
+└── HK SFC Reg Intelligence    █                 VIGO (industry first)
 ```
 
 ### Philosophy
