@@ -1,6 +1,6 @@
 {
   "name": "OrphicOne VIGO",
-  "description": "Hong Kong's First SFC Compliance AI Agent. Query SFC licensing requirements, search enforcement actions, get latest regulatory updates, and access complete license guides — in English and Chinese. 1,250+ structured knowledge entries sourced from official SFC publications.",
+  "description": "The world's first MCP server for financial regulatory intelligence. Query all 13 SFC licence types, search 26 years of enforcement actions, get real-time regulatory updates, and access complete licence guides — bilingual in English and Traditional Chinese. 1,250+ structured knowledge entries sourced from official SFC publications.",
   "url": "https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp",
   "transport": "streamable-http",
   "authentication": "none",
@@ -34,8 +34,8 @@
   "keywords": [
     "sfc",
     "hong-kong",
+    "regulatory-intelligence",
     "compliance",
-    "regulatory",
     "financial-services",
     "virtual-assets",
     "vatp",
@@ -43,6 +43,7 @@
     "licensing",
     "bilingual",
     "fintech",
-    "web3"
+    "mcp",
+    "regtech"
   ]
 }
