@@ -229,6 +229,8 @@ VIGO's intelligence is powered by a structured, continuously updated knowledge b
 **Authentication**: None required  
 **Runtime**: Supabase Edge Functions (Deno)  
 
+> **Note**: The MCP server above is the open, stateless interface for any AI client. On the OrphicOne platform itself, VIGO also integrates **Engram** — a long-term memory system that stores conversation history, tracks user preferences, and adapts responses based on learning progress. Engram uses semantic retrieval (vector similarity) over past dialogues to deliver increasingly personalised compliance guidance over time.
+
 ---
 
 ## About
