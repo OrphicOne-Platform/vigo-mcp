@@ -1,6 +1,6 @@
 # VIGO — The First MCP Server for Financial Regulatory Intelligence
 
-> **Compliance Expert · Capital Architect · Bilingual AI Agent for Hong Kong SFC Regulations**
+> **Regulatory Intelligence Expert · Bilingual AI Agent for Hong Kong SFC Regulations**
 > 
 > *By [OrphicOne](https://orphicone.com) · English & 繁體中文 · Continuously Updated Knowledge Base*
 
@@ -8,12 +8,12 @@
 
 ## What is VIGO?
 
-**VIGO** (Victory · We Go) is a specialized financial compliance AI agent — and the world's first MCP server dedicated to financial regulatory intelligence in any jurisdiction.
+**VIGO** (Visionary · Insight · Governance · Optimization) is a specialized financial regulatory intelligence AI agent — and the world's first MCP server dedicated to financial regulatory intelligence in any jurisdiction.
 
-At its core, VIGO is a **compliance expert**: deeply versed in Hong Kong SFC regulations, enforcement history, licensing requirements, and AML/CFT rules. But VIGO is more than a compliance encyclopedia. It is a **Global Financial Capital Architect** — an AI that understands how compliance intersects with business strategy, capital structures, and market reality.
+At its core, VIGO is a **regulatory intelligence expert**: deeply versed in Hong Kong SFC regulations, enforcement history, licensing requirements, and AML/CFT rules. But VIGO is more than a compliance encyclopedia. It is a **business-aware compliance navigator** — an AI that understands how compliance intersects with business strategy, capital structures, and market reality.
 
 > *Compliance is the floor. Business is the ceiling.*
-> *VIGO helps you build from one to the other.*
+> *VIGO helps you build both.*
 
 ### V.I.G.O. — The Four Dimensions
 
@@ -21,7 +21,7 @@ At its core, VIGO is a **compliance expert**: deeply versed in Hong Kong SFC reg
 |---|---|---|
 | **V** | **Visionary** (遠見) | Capital path planning — IPO structures, SPAC, market positioning |
 | **I** | **Insight** (洞察) | Architecture design — Red-chip, VIE, LPF, OFC, SPC structures |
-| **G** | **Governance** (治理) | Regulatory mastery — SFC licensing (Type 1-12), FRR, AML/CTF |
+| **G** | **Governance** (治理) | Regulatory mastery — SFC licensing (Type 1-13), FRR, AML/CTF |
 | **O** | **Optimization** (優化) | Cost-effective solutions — market pricing, talent policy, ROI |
 
 ### Why VIGO instead of asking Claude/ChatGPT directly?
@@ -114,7 +114,7 @@ Ask any question about SFC regulations. Covers all license types, VATP/ASPIRe fr
 |-----------|----------|-------------|
 | `question` | Yes | Your regulatory question |
 | `language` | No | `"en"`, `"zh"`, or `"auto"` (default) |
-| `license_type` | No | Filter: `"Type 1"` through `"Type 12"` |
+| `license_type` | No | Filter: `"Type 1"` through `"Type 13"` |
 
 ### `search_enforcement`
 
@@ -131,7 +131,7 @@ Comprehensive guide for any SFC license type: exams, capital, fit-and-proper, CP
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `license_type` | Yes | `"Type 1"` through `"Type 12"` |
+| `license_type` | Yes | `"Type 1"` through `"Type 13"` |
 | `aspect` | No | `"overview"`, `"exam"`, `"capital"`, `"fit_and_proper"` |
 
 ### `latest_updates`
@@ -190,7 +190,7 @@ VIGO's intelligence is powered by a structured, continuously updated knowledge b
 - 30 foundational regulatory documents (Codes, Guidelines, Laws)
 
 **Coverage**
-- All SFC license types (Type 1–12) and VATP licensing
+- All SFC license types (Type 1–13) and VATP licensing
 - AML/CFT guidelines and enforcement case history
 - Exam requirements, CPD/CPT rules, fit-and-proper criteria
 - FRR capital requirements and operational compliance
@@ -233,9 +233,9 @@ VIGO's intelligence is powered by a structured, continuously updated knowledge b
 
 ## About
 
-**[OrphicOne](https://orphicone.com)** is a Hong Kong-based cross-border digital asset regulatory intelligence platform.
+**[OrphicOne](https://orphicone.com)** is a Hong Kong-based regulatory intelligence platform for financial services.
 
-**VIGO** is OrphicOne's AI compliance agent and capital advisory system — the world's first and currently only MCP server dedicated to financial regulatory compliance in any jurisdiction.
+**VIGO** is OrphicOne's AI-powered regulatory intelligence agent — the world's first and currently only MCP server dedicated to financial regulatory intelligence in any jurisdiction.
 
 ### Positioning
 
@@ -246,8 +246,8 @@ Global MCP Ecosystem (16,000+ servers)
 ├── Developer Tools        ████████████████  thousands
 ├── Productivity           ██████████        hundreds
 ├── Data & Analytics       ████████          hundreds
-├── Financial Compliance   █                 VIGO (only one)
-└── HK SFC Compliance      █                 VIGO (the first)
+├── Financial Reg Intelligence █                 VIGO (only one)
+└── HK SFC Reg Intelligence    █                 VIGO (the first)
 ```
 
 ### Philosophy
@@ -269,7 +269,7 @@ VIGO is built on the belief that **compliance is not a cost — it is a competit
 
 ## Privacy
 
-VIGO is a read-only compliance intelligence service. We do not collect personal information, store conversation data, or require authentication. See our [Privacy Policy](https://orphicone.com/privacy).
+VIGO is a read-only regulatory intelligence service. We do not collect personal information, store conversation data, or require authentication. See our [Privacy Policy](https://orphicone.com/privacy).
 
 ## Support
 
