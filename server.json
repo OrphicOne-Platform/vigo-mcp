@@ -1,6 +1,6 @@
 {
   "name": "OrphicOne VIGO",
-  "description": "The industry's first MCP server for financial regulatory intelligence. Query all 13 SFC licence types, search 26 years of enforcement actions, get real-time regulatory updates, and access complete licence guides — bilingual in English and Traditional Chinese. Structured knowledge base sourced from official SFC publications.",
+  "description": "The industry's first MCP server for financial regulatory intelligence. Query all 13 SFC licence types, search 26 years of enforcement actions, get real-time regulatory updates, and access complete licence guides — powered by 35 foundational documents, 5 thematic inspection reports, HKMA joint circulars, HKEX listing rules, and 17 industry sources. Bilingual in English and Traditional Chinese. Three-layer quality assurance with source authority scoring.",
   "url": "https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp",
   "transport": "streamable-http",
   "authentication": "none",
@@ -44,6 +44,10 @@
     "bilingual",
     "fintech",
     "mcp",
-    "regtech"
+    "regtech",
+    "hkma",
+    "hkex",
+    "enforcement",
+    "thematic-review"
   ]
 }
