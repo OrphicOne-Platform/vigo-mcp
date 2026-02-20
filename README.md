@@ -28,7 +28,7 @@ At its core, VIGO is a **regulatory intelligence expert**: deeply versed in Hong
 
 | | General AI | VIGO |
 |---|---|---|
-| **Data** | Frozen at training cutoff | Continuously updated from official SFC sources |
+| **Data** | Frozen at training cutoff | Continuously updated — weekly SFC/HKMA/HKEX sync + monthly industry scan |
 | **Accuracy** | Approximate, details often wrong | Precise — based on original regulatory documents |
 | **Sources** | None | Every answer includes official SFC document links |
 | **Depth** | Overview-level | Exam papers, exemptions, capital rules, enforcement details |
@@ -183,18 +183,35 @@ What are the compliance considerations for setting up an OFC in Hong Kong?
 
 VIGO's intelligence is powered by a structured, continuously updated knowledge base covering 26 years of SFC regulatory history:
 
-**Official Sources**
+**Official Sources (6 endpoints)**
 - SFC Circulars, Enforcement News, Consultation Papers
 - VATP/Virtual Asset regulatory updates
 - Press Releases and policy announcements
-- 30 foundational regulatory documents (Codes, Guidelines, Laws)
+- HKMA Joint Circulars (auto-filtered for SFC-relevant content)
+
+**Foundational Documents (35 + 5 Thematic Reports)**
+- 12 Codes + 16 Guidelines + 3 Laws + 2 Handbooks + 2 HKEX Listing Rules
+- 5 SFC Thematic Inspection Reports (Cybersecurity, Sponsor Business, Prime Services, Securities Margin Financing, Alternative Liquidity Pools)
+
+**Industry Intelligence (17 sources)**
+- International Law Firms (6): Charltons, Deacons, KWM, Sidley Austin, Linklaters, Clifford Chance
+- Local Law Firms (3): ONC Lawyers, Stevenson Wong, Paradox Management
+- Big 4 (4): Deloitte HK, PwC HK, EY HK, KPMG HK
+- Compliance Consultants (2): CompliancePlus, Waystone
+- Compliance Tech (2): Heinbro, BBCIncorp
 
 **Coverage**
 - All SFC license types (Type 1–13) and VATP licensing
 - AML/CFT guidelines and enforcement case history
 - Exam requirements, CPD/CPT rules, fit-and-proper criteria
 - FRR capital requirements and operational compliance
-- Industry intelligence from leading law firms and consulting firms
+- HKEX Main Board and GEM Listing Rules
+
+**Quality Assurance Framework**
+- Three-layer deduplication: L1 ref_id exact match → L2 SHA-256 content hash → L3 semantic similarity
+- Six-point content validation on every chunk before upload
+- Source authority scoring: SFC official (100) > HKEX/HKMA (95) > Laws (90) > Thematic Reports (85) > Law firms (75) > Big 4 (70)
+- Automated health checks with change detection for foundational documents
 
 **Technical**
 - Bilingual: every entry exists in English and Traditional Chinese
@@ -252,6 +269,15 @@ Global MCP Ecosystem (16,000+ servers)
 └── HK SFC Reg Intelligence    █                 VIGO (industry first)
 ```
 
+### Data Moat
+
+- **26 years** of SFC regulatory history (2000–2026)
+- **35 foundational documents** + 5 thematic inspection reports
+- **17 industry sources** crawled monthly with sub-page extraction
+- **HKMA joint circulars** + **HKEX listing rules** cross-referenced
+- **Three-layer deduplication** + six-point content validation
+- Knowledge that took years of domain expertise to curate — not easily replicated
+
 ### Philosophy
 
 VIGO is built on the belief that **compliance is not a cost — it is a competitive advantage**. Great compliance doesn't slow business down; it provides the foundation for sustainable growth, client trust, and market credibility.
@@ -262,7 +288,7 @@ VIGO is built on the belief that **compliance is not a cost — it is a competit
 
 | Phase | Focus | Status |
 |-------|-------|--------|
-| **Phase 1** | SFC compliance — all license types, enforcement, VATP | ✅ Live |
+| **Phase 1** | SFC compliance — all license types, enforcement, VATP, 35 foundational docs, 5 thematic reports, HKMA joint circulars, HKEX listing rules, 17 industry sources, QA framework | ✅ Live (v5.0) |
 | **Phase 2** | Full HK regulatory coverage (HKMA, IA, MPFA) | Planned |
 | **Phase 3** | Cross-border Asia-Pacific (Singapore MAS, Dubai VARA) | Future |
 | **Phase 4** | Global financial regulatory intelligence | Vision |
