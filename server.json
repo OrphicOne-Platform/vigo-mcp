@@ -1,6 +1,6 @@
 {
   "name": "OrphicOne VIGO",
-  "description": "The industry's first MCP server for financial regulatory intelligence. Query all 13 SFC licence types, search 26 years of enforcement actions, get real-time regulatory updates, and access complete licence guides — powered by 35 foundational documents, 5 thematic inspection reports, HKMA joint circulars, HKEX listing rules, and 17 industry sources. Bilingual in English and Traditional Chinese. Three-layer quality assurance with source authority scoring.",
+  "description": "The industry's first MCP server for financial regulatory intelligence. Query all 13 SFC licence types, search 26 years of enforcement actions, get real-time regulatory updates, and access complete licence guides — powered by 35 foundational documents, 5 thematic inspection reports, HKMA joint circulars, HKEX listing rules, and 17 industry sources. v6.0 intelligent engine: three-tier verification grading (GOLD/SILVER/BRONZE), hybrid dense+sparse retrieval, query routing, and enhanced source citations. Bilingual in English and Traditional Chinese.",
   "url": "https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp",
   "transport": "streamable-http",
   "authentication": "none",
@@ -29,6 +29,16 @@
       "name": "get_license_guide",
       "description": "Comprehensive guide for a specific SFC license type: exam papers, capital requirements, fit-and-proper criteria, CPD hours.",
       "readOnlyHint": true
+    },
+    {
+      "name": "compliance_check",
+      "description": "Perform a compliance health check for a licensed corporation. Input company profile, get a compliance risk assessment covering FRR capital, RO configuration, MIC roles, annual obligations, and regulatory focus areas.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "risk_assessment",
+      "description": "Assess compliance risk of a planned business activity. Returns Red/Yellow/Green risk rating with regulatory basis and recommended actions.",
+      "readOnlyHint": true
     }
   ],
   "keywords": [
@@ -48,6 +58,8 @@
     "hkma",
     "hkex",
     "enforcement",
-    "thematic-review"
+    "thematic-review",
+    "verification-grading",
+    "hybrid-retrieval"
   ]
 }
