@@ -8,7 +8,7 @@
 
 ## What is VIGO?
 
-**VIGO** (Visionary · Insight · Governance · Optimization) is a specialized financial regulatory intelligence AI agent — and the industry's first MCP server dedicated to financial regulatory intelligence in any jurisdiction.
+**VIGO** (遠見 · 洞察 · 治理 · 優化) is a specialized financial regulatory intelligence AI agent — and the industry's first MCP server dedicated to financial regulatory intelligence in any jurisdiction.
 
 At its core, VIGO is a **regulatory intelligence expert**: deeply versed in Hong Kong SFC regulations, enforcement history, licensing requirements, and AML/CFT rules. But VIGO is more than a compliance encyclopedia. It is a **business-aware compliance navigator** — an AI that understands how compliance intersects with business strategy, capital structures, and market reality.
 
@@ -17,23 +17,24 @@ At its core, VIGO is a **regulatory intelligence expert**: deeply versed in Hong
 
 ### V.I.G.O. — The Four Dimensions
 
-| | Dimension | Capability |
-|---|---|---|
-| **V** | **Visionary** (遠見) | Capital path planning — IPO structures, SPAC, market positioning |
-| **I** | **Insight** (洞察) | Architecture design — Red-chip, VIE, LPF, OFC, SPC structures |
-| **G** | **Governance** (治理) | Regulatory mastery — SFC licensing (Type 1-13), FRR, AML/CTF |
-| **O** | **Optimization** (優化) | Cost-effective solutions — market pricing, talent policy, ROI |
+| | Dimension | 中文 | Capability |
+|---|---|---|---|
+| **V** | **Visionary** | 遠見 | Capital path planning — IPO structures, SPAC, market positioning |
+| **I** | **Insight** | 洞察 | Architecture design — Red-chip, VIE, LPF, OFC, SPC structures |
+| **G** | **Governance** | 治理 | Regulatory mastery — SFC licensing (Type 1-13), FRR, AML/CTF |
+| **O** | **Optimization** | 優化 | Cost-effective solutions — market pricing, talent policy, ROI |
 
 ### Why VIGO instead of asking Claude/ChatGPT directly?
 
 | | General AI | VIGO |
 |---|---|---|
 | **Data** | Frozen at training cutoff | Continuously updated — weekly SFC/HKMA/HKEX sync + monthly industry scan |
-| **Accuracy** | Approximate, details often wrong | Precise — based on original regulatory documents |
-| **Sources** | None | Every answer includes official SFC document links |
+| **Accuracy** | Approximate, details often wrong | Precise — based on original regulatory documents with verification grading |
+| **Sources** | None | Every answer includes official SFC document links with authority scores |
 | **Depth** | Overview-level | Exam papers, exemptions, capital rules, enforcement details |
 | **Enforcement** | Almost none | Searchable fines, bans, suspensions by company/person/year |
 | **Perspective** | Generic | Connects compliance requirements to business value |
+| **Quality** | No quality signals | Three-tier verification: GOLD (official sources) / SILVER (professional) / BRONZE |
 | **Chinese** | Generic translation | Professional regulatory terminology (繁體中文) |
 
 > *Asking ChatGPT about SFC regulations is like asking a smart friend — they roughly know. Asking VIGO is like consulting a senior compliance partner who knows every circular, every enforcement action, every licensing nuance, and always connects compliance back to your business objectives.*
@@ -104,7 +105,7 @@ claude mcp add --transport http vigo https://lsoatzzwpltpydwyfqqv.supabase.co/fu
 
 ## Tools
 
-VIGO provides 4 read-only tools (all annotated with `readOnlyHint: true`):
+VIGO provides 6 tools (4 read-only query tools + 2 analytical tools):
 
 ### `query_regulation`
 
@@ -143,6 +144,28 @@ Latest SFC regulatory updates: circulars, enforcement, VATP developments, consul
 | `category` | No | `"circular"`, `"enforcement"`, `"vatp"`, `"consultation"`, `"all"` |
 | `count` | No | Number of results, 1–10 (default: 5) |
 
+### `compliance_check`
+
+Perform a compliance health check for a licensed corporation. Input company profile, get a multi-dimensional compliance risk assessment.
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `license_types` | Yes | License types held, e.g. `["Type 1", "Type 9"]` |
+| `num_ros` | No | Number of Responsible Officers |
+| `num_staff` | No | Total number of staff |
+| `aum` | No | Assets under management, e.g. `"500M HKD"` |
+| `has_vatp` | No | Whether the firm deals with virtual assets |
+
+### `risk_assessment`
+
+Assess compliance risk of a planned business activity. Returns Red/Yellow/Green risk rating with regulatory basis and recommended actions.
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `description` | Yes | Description of the planned business activity |
+| `license_types` | No | Relevant license types |
+| `urgency` | No | `"immediate"`, `"planned"`, `"exploratory"` |
+
 ---
 
 ## Example Queries
@@ -165,23 +188,23 @@ SFC最新的通函和監管動態是什麼？
 → 最新通函列表，含參考編號、日期、主題、官方文件鏈接（繁體中文）
 ```
 
-**Complete License Guide**
+**Compliance Health Check**
 ```
-Give me a complete guide for Type 1 (Dealing in Securities) license
-→ Exam requirements, capital rules, fit-and-proper criteria, CPD obligations
+Run a compliance check for a Type 1 + Type 9 firm with 3 ROs, 25 staff, 2B HKD AUM
+→ FRR capital assessment, RO configuration review, regulatory focus areas
 ```
 
-**Capital Structure Advisory**
+**Risk Assessment**
 ```
-What are the compliance considerations for setting up an OFC in Hong Kong?
-→ Regulatory requirements, SFC approval process, tax benefits, practical timeline
+We want to launch a tokenized fund product for retail investors in Hong Kong
+→ Red/Yellow/Green rating, regulatory basis, recommended actions, timeline
 ```
 
 ---
 
 ## Knowledge Base
 
-VIGO's intelligence is powered by a structured, continuously updated knowledge base covering 26 years of SFC regulatory history:
+VIGO's intelligence is powered by a structured, continuously updated knowledge base with **6,379 verified knowledge chunks** covering 26 years of SFC regulatory history:
 
 **Official Sources (6 endpoints)**
 - SFC Circulars, Enforcement News, Consultation Papers
@@ -207,16 +230,20 @@ VIGO's intelligence is powered by a structured, continuously updated knowledge b
 - FRR capital requirements and operational compliance
 - HKEX Main Board and GEM Listing Rules
 
-**Quality Assurance Framework**
+**v6 Quality Assurance Framework**
+- Three-tier verification grading: **GOLD** (official SFC/HKMA sources, authority ≥90) · **SILVER** (professional sources, authority ≥65) · **BRONZE** (general sources)
+- Current distribution: 4,155 GOLD (65%) · 2,224 SILVER (35%) · 0 BRONZE
 - Three-layer deduplication: L1 ref_id exact match → L2 SHA-256 content hash → L3 semantic similarity
 - Six-point content validation on every chunk before upload
-- Source authority scoring: SFC official (100) > HKEX/HKMA (95) > Laws (90) > Thematic Reports (85) > Law firms (75) > Big 4 (70)
+- Source authority scoring: SFC official (95) > HKMA/IA (85) > HKEX (90) > Law firms (70) > Big 4 (68) > Consultants (65)
+- BM25 full-text search index for hybrid dense+sparse retrieval
 - Automated health checks with change detection for foundational documents
 
 **Technical**
 - Bilingual: every entry exists in English and Traditional Chinese
+- v6 intelligent retrieval: Query Router (9 route types) → Dense search (vector, threshold 0.25) + Sparse search (BM25) → RRF merging → Score fusion with verification grade boost
 - Vector search via OpenAI `text-embedding-3-small` embeddings
-- Official SFC document links embedded in every response
+- Official SFC document links embedded in every response with numbered citations
 
 ---
 
@@ -231,15 +258,22 @@ VIGO's intelligence is powered by a structured, continuously updated knowledge b
                │ MCP Protocol (Streamable HTTP)
                ▼
 ┌─────────────────────────────────────────┐
-│  VIGO MCP Server                        │
+│  VIGO MCP Server (6 tools)              │
 │  Supabase Edge Function (Deno)          │
-│  4 read-only tools                      │
 └──────────────┬──────────────────────────┘
                │
     ┌──────────┼──────────┐
     ▼          ▼          ▼
  OpenAI    Supabase    DeepSeek
  Embeddings  Vector DB   Chat API
+             + BM25 FTS
+
+┌─────────────────────────────────────────┐
+│  v6 Intelligent Pipeline                │
+│  vigo-ingest → Auto-classify →          │
+│  Semantic chunk → Verify & Grade →      │
+│  Store with GOLD/SILVER/BRONZE          │
+└─────────────────────────────────────────┘
 ```
 
 **Transport**: Streamable HTTP (MCP standard)  
@@ -272,10 +306,12 @@ Global MCP Ecosystem (16,000+ servers)
 ### Data Moat
 
 - **26 years** of SFC regulatory history (2000–2026)
+- **6,379 verified knowledge chunks** with three-tier quality grading
 - **35 foundational documents** + 5 thematic inspection reports
 - **17 industry sources** crawled monthly with sub-page extraction
 - **HKMA joint circulars** + **HKEX listing rules** cross-referenced
 - **Three-layer deduplication** + six-point content validation
+- **v6 intelligent ingest pipeline** with auto-classification and verification
 - Knowledge that took years of domain expertise to curate — not easily replicated
 
 ### Philosophy
@@ -288,7 +324,7 @@ VIGO is built on the belief that **compliance is not a cost — it is a competit
 
 | Phase | Focus | Status |
 |-------|-------|--------|
-| **Phase 1** | SFC compliance — all license types, enforcement, VATP, 35 foundational docs, 5 thematic reports, HKMA joint circulars, HKEX listing rules, 17 industry sources, QA framework | ✅ Live (v5.0) |
+| **Phase 1** | SFC compliance — all license types, enforcement, VATP, 35 foundational docs, 5 thematic reports, HKMA joint circulars, HKEX listing rules, 17 industry sources, QA framework, v6 intelligent engine | ✅ Live (v6.0) |
 | **Phase 2** | Full HK regulatory coverage (HKMA, IA, MPFA) | Planned |
 | **Phase 3** | Cross-border Asia-Pacific (Singapore MAS, Dubai VARA) | Future |
 | **Phase 4** | Global financial regulatory intelligence | Vision |
