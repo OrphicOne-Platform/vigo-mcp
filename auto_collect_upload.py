@@ -229,8 +229,24 @@ else:
 # ═══════════════════════════════════════════════════════════════
 
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-    'Accept': '*/*'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9,zh-HK;q=0.8,zh;q=0.7',
+}
+
+# v7.0.4: 增強 Headers（用於 403 反爬站點）
+ENHANCED_HEADERS = {
+    **HEADERS,
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Referer': 'https://www.google.com/',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'cross-site',
+    'Sec-Ch-Ua': '"Chromium";v="131", "Not_A Brand";v="24"',
+    'Sec-Ch-Ua-Mobile': '?0',
+    'Sec-Ch-Ua-Platform': '"Windows"',
+    'Cache-Control': 'max-age=0',
+    'Connection': 'keep-alive',
 }
 
 CHUNK_MIN = 300
@@ -2671,7 +2687,7 @@ def _show_foundational_status():
 
 
 # ============================================================
-# v5.0 Mode 6: 行業知識中心（19 家來源 + 子頁面爬取）
+# v5.0 Mode 6: 行業知識中心（22 家來源 + 子頁面爬取）
 # ============================================================
 
 def load_sources():
@@ -2684,7 +2700,7 @@ def load_sources():
                 return [s for s in data if s.get("enabled", True)]
         except: pass
     
-    # v5.0 預設 19 家來源
+    # v7.0.4 預設 22 家來源（URL 已修復）
     default_sources = [
         # ── 合規顧問公司 (2) ──
         {"id": "complianceplus", "name": "CompliancePlus", "name_zh": "合規顧問",
@@ -2693,18 +2709,18 @@ def load_sources():
          "keywords": ["Type6A", "Compliance", "Licensing", "SFC"],
          "crawl_depth": 2, "max_articles": 15},
         {"id": "paradox_management", "name": "Paradox Management", "name_zh": "合規管理顧問",
-         "url": "https://paradox-management.com/zh-hant/", "type": "consulting_firm",
+         "url": "https://paradox-management.com/", "type": "consulting_firm",
          "priority": "HIGH", "enabled": True, "schedule": "weekly",
          "keywords": ["Type6A", "Compliance", "Licensing", "SFC"],
          "crawl_depth": 2, "max_articles": 15},
         # ── 國際律所 (5) ──
         {"id": "charltons", "name": "Charltons Law", "name_zh": "齊伯禮律師行",
-         "url": "https://www.charltonslaw.com/hong-kong-regulatory/", "type": "law_firm_intl",
+         "url": "https://www.charltonslaw.com/news/newsletters/updates/", "type": "law_firm_intl",
          "priority": "HIGH", "enabled": True, "schedule": "weekly",
          "keywords": ["SFC", "IPO", "Licensing", "Enforcement"],
          "crawl_depth": 2, "max_articles": 20},
         {"id": "deacons", "name": "Deacons (的近律師行)", "name_zh": "的近律師行",
-         "url": "https://www.deacons.com/expertise/financial-services-regulation/", "type": "law_firm_intl",
+         "url": "https://www.deacons.com/news-and-insights/?sector=financial-services-regulatory", "type": "law_firm_intl",
          "priority": "HIGHEST", "enabled": True, "schedule": "weekly",
          "keywords": ["SFC", "Compliance", "Inspection", "Licensing"],
          "crawl_depth": 2, "max_articles": 20},
@@ -2712,12 +2728,12 @@ def load_sources():
          "url": "https://www.kwm.com/hk/en/insights.html", "type": "law_firm_intl",
          "priority": "HIGH", "enabled": True, "schedule": "weekly",
          "keywords": ["SFC", "Licensing", "PE", "Family_Office"],
-         "crawl_depth": 1, "max_articles": 10},
+         "crawl_depth": 1, "max_articles": 10, "needs_enhanced_headers": True},
         {"id": "sidley", "name": "Sidley Austin", "name_zh": "盛德律師事務所",
          "url": "https://www.sidley.com/en/insights/newsupdates", "type": "law_firm_intl",
          "priority": "MEDIUM", "enabled": True, "schedule": "monthly",
          "keywords": ["SFC", "PE", "VC", "Licensing"],
-         "crawl_depth": 1, "max_articles": 10},
+         "crawl_depth": 1, "max_articles": 10, "needs_enhanced_headers": True},
         {"id": "linklaters", "name": "Linklaters", "name_zh": "年利達律師事務所",
          "url": "https://www.linklaters.com/en/insights", "type": "law_firm_intl",
          "priority": "MEDIUM", "enabled": True, "schedule": "monthly",
@@ -2728,30 +2744,30 @@ def load_sources():
          "url": "https://www.onc.hk/en_US/publications/", "type": "law_firm_local",
          "priority": "MEDIUM", "enabled": True, "schedule": "weekly",
          "keywords": ["SFC", "Compliance", "Licensing"],
-         "crawl_depth": 1, "max_articles": 10},
+         "crawl_depth": 1, "max_articles": 10, "ssl_verify": False},
         {"id": "swlaw", "name": "Stevenson Wong", "name_zh": "胡關李羅律師行",
          "url": "https://www.swlaw.hk/publications", "type": "law_firm_local",
-         "priority": "MEDIUM", "enabled": True, "schedule": "monthly",
+         "priority": "MEDIUM", "enabled": False, "schedule": "monthly",
          "keywords": ["SFC", "Enforcement", "Investigation"],
          "crawl_depth": 1, "max_articles": 10},
         # ── 四大會計師行 (4) ──
-        {"id": "deloitte_hk", "name": "Deloitte HK", "name_zh": "德勤香港",
-         "url": "https://www2.deloitte.com/cn/en/pages/financial-services/articles/financial-services.html",
+        {"id": "deloitte_hk", "name": "Deloitte China - FS Insights", "name_zh": "德勤中國",
+         "url": "https://www.deloitte.com/cn/en/Industries/financial-services/perspectives.html",
          "type": "big4", "priority": "MEDIUM", "enabled": True, "schedule": "monthly",
          "keywords": ["SFC", "Risk", "Compliance", "RegTech"],
          "crawl_depth": 1, "max_articles": 8},
-        {"id": "pwc_hk", "name": "PwC HK", "name_zh": "普華永道香港",
-         "url": "https://www.pwchk.com/en/industries/financial-services.html",
+        {"id": "pwc_hk", "name": "PwC HK - FS Risk & Regulation", "name_zh": "普華永道香港",
+         "url": "https://www.pwchk.com/en/industries/financial-services/financial-services-risk-and-regulations.html",
          "type": "big4", "priority": "MEDIUM", "enabled": True, "schedule": "monthly",
          "keywords": ["SFC", "Regulation", "Financial_Services"],
          "crawl_depth": 1, "max_articles": 8},
-        {"id": "ey_hk", "name": "EY HK", "name_zh": "安永香港",
-         "url": "https://www.ey.com/en_hk/financial-services",
+        {"id": "ey_hk", "name": "EY China - HK FS Regulatory", "name_zh": "安永中國",
+         "url": "https://www.ey.com/en_cn/insights/assurance/hong-kong-financial-services-regulatory-requirements",
          "type": "big4", "priority": "MEDIUM", "enabled": True, "schedule": "monthly",
          "keywords": ["SFC", "Financial_Services", "RegTech"],
          "crawl_depth": 1, "max_articles": 8},
-        {"id": "kpmg_hk", "name": "KPMG HK", "name_zh": "畢馬威香港",
-         "url": "https://kpmg.com/cn/en/home/insights/financial-services.html",
+        {"id": "kpmg_hk", "name": "KPMG China - FS Insights", "name_zh": "畢馬威中國",
+         "url": "https://kpmg.com/cn/en/insights.html",
          "type": "big4", "priority": "MEDIUM", "enabled": True, "schedule": "monthly",
          "keywords": ["SFC", "Financial_Services", "Regulation"],
          "crawl_depth": 1, "max_articles": 8},
@@ -2902,7 +2918,12 @@ def import_industry_intelligence():
         print(f"     Type: {src['type']} | Priority: {src.get('priority', 'MEDIUM')}")
         
         try:
-            resp = requests.get(src["url"], headers=HEADERS, timeout=30)
+            # v7.0.4: 支援增強 Headers / SSL bypass / 自定義超時
+            req_headers = ENHANCED_HEADERS if src.get("needs_enhanced_headers") else HEADERS
+            req_timeout = src.get("request_timeout", 30)
+            req_verify = src.get("ssl_verify", True)
+            
+            resp = requests.get(src["url"], headers=req_headers, timeout=req_timeout, verify=req_verify)
             if resp.status_code != 200:
                 print(f"     ✗ HTTP {resp.status_code}")
                 stats["fail"] += 1
