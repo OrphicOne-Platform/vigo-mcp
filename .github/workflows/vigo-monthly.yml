@@ -16,7 +16,7 @@ env:
 jobs:
   monthly-maintenance:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,16 +26,16 @@ jobs:
         run: pip install requests beautifulsoup4 pdfplumber python-dotenv openpyxl python-docx
       - name: Run Mode 6 - Industry Intelligence
         run: python auto_collect_upload.py --mode 6 --sub e --non-interactive
-        timeout-minutes: 15
+        timeout-minutes: 40
       - name: Run Mode 9 - VATP Deep
         run: python auto_collect_upload.py --mode 9 --sub e --non-interactive
-        timeout-minutes: 10
+        timeout-minutes: 40
       - name: Run Mode 13e - Data Quality
         run: python auto_collect_upload.py --mode 13 --sub e --non-interactive
-        timeout-minutes: 20
+        timeout-minutes: 40
       - name: Run Mode 12e - Structured Extract
         run: python auto_collect_upload.py --mode 12 --sub e --non-interactive
-        timeout-minutes: 10
+        timeout-minutes: 40
       - name: Run Mode 11a - Eval
         run: python auto_collect_upload.py --mode 11 --sub a --non-interactive
-        timeout-minutes: 15
+        timeout-minutes: 40
