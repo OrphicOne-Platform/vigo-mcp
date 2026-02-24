@@ -16,7 +16,7 @@ env:
 jobs:
   weekly-quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,7 +26,7 @@ jobs:
         run: pip install requests beautifulsoup4 pdfplumber python-dotenv openpyxl python-docx
       - name: Run Mode 13e - Data Quality
         run: python auto_collect_upload.py --mode 13 --sub e --non-interactive
-        timeout-minutes: 20
+        timeout-minutes: 40
       - name: Run Mode 14e - Full Inspection
         run: python auto_collect_upload.py --mode 14 --sub e --non-interactive
-        timeout-minutes: 20
+        timeout-minutes: 40
