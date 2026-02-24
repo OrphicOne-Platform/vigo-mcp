@@ -26,7 +26,7 @@ jobs:
         run: pip install requests beautifulsoup4 pdfplumber python-dotenv openpyxl python-docx
       - name: Run Mode 1 - Daily Sync
         run: python auto_collect_upload.py --mode 1 --sub e --non-interactive
-        timeout-minutes: 8
+        timeout-minutes: 12
       - name: Run Mode 14a - Conflict Detection
         run: python auto_collect_upload.py --mode 14 --sub a --non-interactive
-        timeout-minutes: 5
+        timeout-minutes: 10
