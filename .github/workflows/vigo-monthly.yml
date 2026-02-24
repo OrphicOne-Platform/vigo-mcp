@@ -1,0 +1,165 @@
+# .github/workflows/vigo-monthly.yml
+# VIGO 每月深度維護（15號）
+# Mode 6 行業情報 → Mode 9 VATP → Mode 13e 清理 → Mode 12e 結構化 → Mode 11a 評估
+
+name: VIGO Monthly Maintenance
+
+on:
+  schedule:
+    # 每月 15 號 00:00 UTC = 08:00 HKT
+    - cron: '0 0 15 * *'
+  workflow_dispatch:
+    inputs:
+      run_eval_only:
+        description: 'Only run Mode 11 evaluation'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+  VIGO_CHAT_URL: ${{ secrets.VIGO_CHAT_URL }}
+
+jobs:
+  monthly-data-collection:
+    if: ${{ !inputs.run_eval_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 pdfplumber
+
+      - name: Run Mode 6 - Industry Intelligence
+        run: python auto_collect_upload.py --mode 6 --sub e --non-interactive
+        timeout-minutes: 15
+
+      - name: Run Mode 9 - VATP Deep
+        run: python auto_collect_upload.py --mode 9 --sub e --non-interactive
+        timeout-minutes: 10
+
+      - name: Run Mode 13e - Data Quality
+        run: python auto_collect_upload.py --mode 13 --sub e --non-interactive
+        timeout-minutes: 20
+
+      - name: Run Mode 12e - Structured Extract
+        run: python auto_collect_upload.py --mode 12 --sub e --non-interactive
+        timeout-minutes: 10
+
+      - name: Upload collection reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-data-${{ github.run_number }}
+          path: reports/*.json
+          retention-days: 60
+
+  monthly-evaluation:
+    runs-on: ubuntu-latest
+    needs: [monthly-data-collection]
+    if: always()
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Mode 11a - Full 50-Question Eval
+        run: python auto_collect_upload.py --mode 11 --sub a --non-interactive
+        timeout-minutes: 15
+
+      - name: Compare with previous eval
+        run: python auto_collect_upload.py --mode 11 --compare-last --non-interactive
+        continue-on-error: true
+
+      - name: Upload eval reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-eval-${{ github.run_number }}
+          path: reports/eval_*.json
+          retention-days: 90
+
+      - name: Check eval score regression
+        run: |
+          # Extract latest eval score and alert if below threshold
+          SCORE=$(python -c "
+          import json, glob
+          files = sorted(glob.glob('reports/eval_*.json'))
+          if files:
+              with open(files[-1]) as f:
+                  data = json.load(f)
+                  print(data.get('recall_at_5', 0))
+          else:
+              print(0)
+          ")
+          echo "Eval Recall@5: $SCORE"
+          if (( $(echo "$SCORE < 0.7" | bc -l) )); then
+            echo "::error::VIGO Eval score dropped below 70%! Score: $SCORE"
+            exit 1
+          fi
+
+  quarterly-deep-scan:
+    # 只在 1/4/7/10 月執行
+    if: ${{ contains(fromJSON('["1","4","7","10"]'), format('{0}', github.event.schedule && '15' || '0')) || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    needs: [monthly-evaluation]
+    timeout-minutes: 30
+
+    steps:
+      - name: Check if quarterly month
+        id: check-quarter
+        run: |
+          MONTH=$(date +%m)
+          if [[ "$MONTH" == "01" || "$MONTH" == "04" || "$MONTH" == "07" || "$MONTH" == "10" ]]; then
+            echo "is_quarterly=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_quarterly=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout repository
+        if: steps.check-quarter.outputs.is_quarterly == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        if: steps.check-quarter.outputs.is_quarterly == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        if: steps.check-quarter.outputs.is_quarterly == 'true'
+        run: pip install requests beautifulsoup4 pdfplumber
+
+      - name: Run Mode 2 - Quarterly Deep Scan
+        if: steps.check-quarter.outputs.is_quarterly == 'true'
+        run: python auto_collect_upload.py --mode 2 --sub e --non-interactive
+        timeout-minutes: 15
+
+      - name: Run Mode 5 - Foundational Regulation Check
+        if: steps.check-quarter.outputs.is_quarterly == 'true'
+        run: python auto_collect_upload.py --mode 5 --sub e --non-interactive
+        timeout-minutes: 10
+
+      - name: Clean old reports (>90 days)
+        if: steps.check-quarter.outputs.is_quarterly == 'true'
+        run: find reports/ -name "*.json" -mtime +90 -delete 2>/dev/null || true
