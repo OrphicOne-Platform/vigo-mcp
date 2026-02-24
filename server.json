@@ -1,6 +1,6 @@
 {
   "name": "OrphicOne VIGO",
-  "description": "The industry's first MCP server for financial regulatory intelligence. Query all 13 SFC licence types, search 26 years of enforcement actions, get real-time regulatory updates, and access complete licence guides — powered by 35 foundational documents, 5 thematic inspection reports, HKMA joint circulars, HKEX listing rules, and 17 industry sources. v6.0 intelligent engine: three-tier verification grading (GOLD/SILVER/BRONZE), hybrid dense+sparse retrieval, query routing, and enhanced source citations. Bilingual in English and Traditional Chinese.",
+  "description": "The industry's first MCP server for financial regulatory intelligence. Query all 13 SFC licence types, search 26 years of enforcement actions, get real-time regulatory updates, and access complete licence guides — powered by 6,381 verified knowledge chunks, 35 foundational documents, 5 thematic inspection reports, HKMA joint circulars, HKEX listing rules, and 17 industry sources. v7.0 world-class engine: three-tier verification grading (GOLD 65% / SILVER 35%), six-layer intelligent retrieval pipeline with hybrid dense+sparse search, dual-model routing (DeepSeek + GPT-4o-mini), 9-type query classification, structured data extraction (76 records across 4 tables), self-correction engine with conflict detection, autonomous operations via pg_cron + GitHub Actions, and evaluation benchmarks (Recall@5 80%, MRR 0.800). Bilingual in English and Traditional Chinese.",
   "url": "https://lsoatzzwpltpydwyfqqv.supabase.co/functions/v1/vigo-mcp",
   "transport": "streamable-http",
   "authentication": "none",
@@ -60,6 +60,10 @@
     "enforcement",
     "thematic-review",
     "verification-grading",
-    "hybrid-retrieval"
+    "hybrid-retrieval",
+    "dual-model-routing",
+    "structured-data",
+    "self-correction",
+    "autonomous-ops"
   ]
 }
