@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 env:
+  PYTHONUNBUFFERED: "1"
   SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
   SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -16,7 +17,7 @@ env:
 jobs:
   daily-sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,7 +27,7 @@ jobs:
         run: pip install requests beautifulsoup4 pdfplumber python-dotenv openpyxl python-docx
       - name: Run Mode 1 - Daily Sync
         run: python auto_collect_upload.py --mode 1 --sub e --non-interactive
-        timeout-minutes: 12
+        timeout-minutes: 20
       - name: Run Mode 14a - Conflict Detection
         run: python auto_collect_upload.py --mode 14 --sub a --non-interactive
-        timeout-minutes: 10
+        timeout-minutes: 5
