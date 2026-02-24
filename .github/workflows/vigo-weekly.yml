@@ -1,58 +1,32 @@
 # .github/workflows/vigo-weekly.yml
-# VIGO 每週品質巡檢（週一）
-# Mode 13e 數據質量 → Mode 14e 全面巡檢 → Stale 來源自動重爬
-
 name: VIGO Weekly Quality
 
 on:
   schedule:
-    # 每週日 00:00 UTC = 週一 08:00 HKT
     - cron: '0 0 * * 0'
   workflow_dispatch:
 
 env:
   SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-  SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+  SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+  VIGO_CHAT_URL: ${{ secrets.VIGO_CHAT_URL }}
 
 jobs:
   weekly-quality:
     runs-on: ubuntu-latest
     timeout-minutes: 45
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 pdfplumber
-
-      - name: Run Mode 13e - Data Quality (Dedup + Verify + Freshness + Report)
+        run: pip install requests beautifulsoup4 pdfplumber python-dotenv openpyxl python-docx
+      - name: Run Mode 13e - Data Quality
         run: python auto_collect_upload.py --mode 13 --sub e --non-interactive
         timeout-minutes: 20
-
-      - name: Run Mode 14e - Full Inspection (Conflict + Expiry + Source + Domain + Report)
+      - name: Run Mode 14e - Full Inspection
         run: python auto_collect_upload.py --mode 14 --sub e --non-interactive
         timeout-minutes: 20
-
-      - name: Run Mode 1 - Re-crawl Stale Sources (if any detected)
-        run: python auto_collect_upload.py --mode 1 --sub e --stale-only --non-interactive
-        timeout-minutes: 8
-        continue-on-error: true
-
-      - name: Upload quality reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: weekly-quality-${{ github.run_number }}
-          path: reports/*.json
-          retention-days: 30
-
-      - name: Notify on failure
-        if: failure()
-        run: echo "::error::VIGO Weekly Quality check failed!"
