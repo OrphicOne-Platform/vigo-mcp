@@ -5480,10 +5480,10 @@ def _run_verification_enhancement():
     for r in updated:
         g = r.get("verification_grade", "BRONZE")
         grades[g] = grades.get(g, 0) + 1
-    total = sum(grades.values())
-    print(f"  新分佈: GOLD {grades['GOLD']} ({grades['GOLD']/total*100:.0f}%) | "
-          f"SILVER {grades['SILVER']} ({grades['SILVER']/total*100:.0f}%) | "
-          f"BRONZE {grades['BRONZE']} ({grades['BRONZE']/total*100:.0f}%)")
+    total = sum(grades.values()) or 1  # 防止除零
+    print(f"  新分佈: GOLD {grades.get('GOLD',0)} ({grades.get('GOLD',0)/total*100:.0f}%) | "
+          f"SILVER {grades.get('SILVER',0)} ({grades.get('SILVER',0)/total*100:.0f}%) | "
+          f"BRONZE {grades.get('BRONZE',0)} ({grades.get('BRONZE',0)/total*100:.0f}%)")
 
     return enhanced
 
